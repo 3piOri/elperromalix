@@ -20,7 +20,7 @@
 
 body {
     font-family: var(--font-main);
-    background-color: #000000cc;
+    background-color: white;
     color: var(--color-text);
     overflow-x: hidden;
     display: flex;
@@ -46,7 +46,7 @@ body {
 .header {
     text-align: center;
     padding: 40px 20px 20px;
-    background: linear-gradient(360deg, #333333 15%, #ffffff 100%);
+    background: white;
     position: relative;
     z-index: 1;
 }
@@ -267,7 +267,7 @@ body {
 
 .paw-print {
     position: absolute;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgb(15, 15, 15);
     animation: fadeInOutPaw 3s ease-in-out forwards;
 }
 
@@ -458,7 +458,6 @@ body {
 .footer-content {
     position: relative;
     z-index: 2;
-}    
 	/* Estilos para íconos de redes sociales en el footer */
 .social-links {
     display: flex;
