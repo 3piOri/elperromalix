@@ -238,6 +238,22 @@ body {
     font-weight: 600;
 }
 
+/* Tarjeta de precios: texto compacto para que quepa dentro del círculo */
+.card-back--prices {
+    padding: 16px 18px;
+}
+
+.card-back--prices h3 {
+    font-size: 0.75rem;
+    margin-bottom: 5px;
+}
+
+.card-back--prices p {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    margin-bottom: 3px;
+}
+
 /* ==========================================================================
    Animaciones de Entrada Scroll (Reveal)
    ========================================================================== */
