@@ -549,8 +549,8 @@ body.card-modal-open .services-container {
 }
 
 .card-flip-container.active .card-back h3 {
-    max-width: 70%; /* Permite que títulos largos se ajusten a dos líneas dentro del círculo */
-    font-size: 1.25rem;
+    max-width: 50%; /* Permite que títulos largos se ajusten a dos líneas dentro del círculo */
+    font-size: 1rem;
     margin-bottom: 14px;
 }
 
