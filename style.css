@@ -557,7 +557,7 @@ body.card-modal-open .services-container {
 .card-flip-container.active .card-back p {
     max-width: none;
     font-size: 0.9rem;
-    line-height: 1;
+    line-height: 1.5;
     margin-bottom: 16px;
 }
 
