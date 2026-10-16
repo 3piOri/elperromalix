@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta property="og:title" content="El perro Malix" />
+    <!-- 1. Codificación siempre al principio -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>El perro Malix - Servicios Caninos</title>
+    <meta name="description" content="Servicios Caninos: Amor, Cuidado y Entrenamiento Profesional para tu Mejor Amigo.">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="El perro Malix" />
     <meta property="og:description" content="Servicios Caninos." />
     <meta property="og:image" content="https://elperromallix.vercel.app/oglogo12.jpg" />
     <meta property="og:url" content="https://elperromallix.vercel.app/" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El perro Malix - Servicios Caninos</title>
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="El perro Malix">
+    <meta name="twitter:description" content="Servicios Caninos.">
+    <meta name="twitter:image" content="https://elperromallix.vercel.app/oglogo12.jpg">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para el ícono de WhatsApp -->
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Contenedor para huellas animadas en todo el fondo -->
+    <div class="paws-container-body" id="pawsContainerBody"></div>
+
+    <!-- Encabezado / Hero -->
+    <header class="header">
+        <div class="paws-container" id="pawsContainerHeader"></div>
+        <div class="logo-container reveal-item">
+            <img src="Logo-2026.webp" alt="El Perro Malix Logo" class="logo" width="200" height="200">
+        </div>
+        <p class="tagline reveal-item">Amor, Cuidado y Entrenamiento Profesional para tu Mejor Amigo</p>
+    </header>
     <!-- Contenedor para huellas animadas en todo el fondo -->
     <div class="paws-container-body" id="pawsContainerBody"></div>
 
