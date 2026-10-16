@@ -561,6 +561,10 @@ body.card-modal-open .services-container {
     margin-bottom: 16px;
 }
 
+.card-flip-container.active .card-back--prices p {
+    line-height: 1;
+}
+
 .card-flip-container.active .card-back .badge {
     max-width: 100%;
     font-size: 0.9rem;
