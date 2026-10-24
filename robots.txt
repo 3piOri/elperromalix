@@ -2,3 +2,8 @@ User-agent: *
 Allow: /
 
 Sitemap: https://elperromalix.vercel.app/sitemap.xml
+
+User-agent: *
+Allow: /
+
+Sitemap: https://elperromalix.vercel.app/sitemap.xml
