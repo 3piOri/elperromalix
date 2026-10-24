@@ -199,6 +199,7 @@ body {
 .card-front h3 {
     position: relative;
     z-index: 2;
+    overflow: hidden;
     width: 90%;
     background: var(--color-brown);
     color: var(--color-white);
@@ -256,6 +257,8 @@ body {
 }
 
 .card-back .badge {
+    position: relative;
+    overflow: hidden;
     display: inline-block;
     background-color: var(--color-brown);
     color: #fff;
@@ -263,6 +266,35 @@ body {
     padding: 4px 10px;
     border-radius: 12px;
     font-weight: 600;
+}
+
+.card-back .badge::before,
+.card-front h3::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -70%;
+    z-index: 1;
+    width: 35%;
+    height: 220%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.18) 35%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(255, 255, 255, 0.18) 65%,
+        transparent
+    );
+    filter: blur(1px);
+    transform: skewX(-25deg);
+    animation: badge-shine 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes badge-shine {
+    to {
+        left: 130%;
+    }
 }
 
 /* Tarjeta de precios: texto compacto para que quepa dentro del círculo */
@@ -395,7 +427,9 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     .card-front img,
-    .card-back {
+    .card-back,
+    .card-back .badge::before,
+    .card-front h3::before {
         animation: none;
     }
 }
