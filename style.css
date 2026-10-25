@@ -268,8 +268,7 @@ body {
     font-weight: 600;
 }
 
-.card-back .badge::before,
-.card-front h3::before {
+.card-back .badge::before {
     content: '';
     position: absolute;
     top: -60%;
@@ -309,8 +308,8 @@ body {
 
 .card-back--prices p {
     font-size: 0.7rem;
-    line-height: 1.2;
-    margin-bottom: 3px;
+    line-height: 1.3;
+    margin-bottom: 4px;
 }
 
 /* ==========================================================================
@@ -455,7 +454,12 @@ body {
     }
 
     .cards-grid {
+        grid-template-columns: 1fr;
         gap: 30px 15px;
+    }
+
+    .cards-grid > * {
+    -webkit-tap-highlight-color: transparent;
     }
 
     /* Tamaño global del contenedor táctil */
@@ -636,7 +640,7 @@ body.card-modal-open .services-container {
 }
 
 .card-flip-container.active .card-back--prices p {
-    line-height: 1;
+    line-height: 1.5;
 }
 
 .card-flip-container.active .card-back .badge {
@@ -645,4 +649,10 @@ body.card-modal-open .services-container {
     padding: 6px 12px;
     white-space: normal;
     text-align: center;
+}
+
+@media (max-width: 600px) {
+    .card-flip-container.active .card-back--prices p {
+        line-height: 0.8;
+    }
 }
