@@ -684,6 +684,7 @@ body.card-modal-open .services-container {
         background: var(--color-brown);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .mobile-card-menu-toggle span {
