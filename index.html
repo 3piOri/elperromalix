@@ -38,6 +38,24 @@
     <!-- Contenedor para huellas animadas en todo el fondo -->
     <div class="paws-container-body" id="pawsContainerBody"></div>
 
+    <div class="mobile-card-navigation">
+        <button class="mobile-card-menu-toggle" type="button" aria-label="Abrir lista de tarjetas" aria-expanded="false" aria-controls="mobileCardMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="mobile-card-menu" id="mobileCardMenu" aria-label="Navegación de tarjetas" hidden>
+            <ul>
+                <li><a href="#service-paseo">Paseo Canino</a></li>
+                <li><a href="#service-clases">Clases Particulares</a></li>
+                <li><a href="#service-asesoria">Asesoría de Comportamiento</a></li>
+                <li><a href="#service-entrenamiento">Entrenamiento Canino</a></li>
+                <li><a href="#service-estancia">Estancia Canina</a></li>
+                <li><a href="#service-precios">Cotiza tu servicio</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <!-- Encabezado / Hero -->
     <header class="header">
         <div class="paws-container" id="pawsContainerHeader"></div>
@@ -55,7 +73,7 @@
         <div class="cards-grid">
             
             <!-- Elemento 1: Paseo Canino -->
-            <div class="card-flip-container reveal-item" role="button" tabindex="0" aria-label="Ver información sobre Paseo Canino">
+            <div class="card-flip-container reveal-item" id="service-paseo" role="button" tabindex="0" aria-label="Ver información sobre Paseo Canino">
                 <div class="card-flip-inner">
                     <div class="card-front">
                         <img src="paseo.png" alt="Paseo Canino">
@@ -70,7 +88,7 @@
             </div>
 			
 			 <!-- Elemento 2: Clases Particulares -->
-            <div class="card-flip-container reveal-item" role="button" tabindex="0" aria-label="Ver información sobre Clases Particulares">
+            <div class="card-flip-container reveal-item" id="service-clases" role="button" tabindex="0" aria-label="Ver información sobre Clases Particulares">
                 <div class="card-flip-inner">
                     <div class="card-front">
                         <img src="clases.png" alt="Clases Particulares">
@@ -85,7 +103,7 @@
             </div>
 
 			 <!-- Elemento 3: Asesoría en Comportamiento Canino -->
-            <div class="card-flip-container reveal-item" role="button" tabindex="0" aria-label="Ver información sobre Asesoría de Comportamiento">
+            <div class="card-flip-container reveal-item" id="service-asesoria" role="button" tabindex="0" aria-label="Ver información sobre Asesoría de Comportamiento">
                 <div class="card-flip-inner">
                     <div class="card-front">
                         <img src="asesoria.png" alt="Asesoría en Comportamiento Canino">
@@ -100,7 +118,7 @@
             </div>
 			
             <!-- Elemento 4: Entrenamiento -->
-            <div class="card-flip-container reveal-item" role="button" tabindex="0" aria-label="Ver información sobre Entrenamiento">
+            <div class="card-flip-container reveal-item" id="service-entrenamiento" role="button" tabindex="0" aria-label="Ver información sobre Entrenamiento">
                 <div class="card-flip-inner">
                     <div class="card-front">
                         <img src="entrenamiento.png" alt="Entrenamiento de Obediencia">
@@ -115,7 +133,7 @@
             </div>
 			
 	    <!-- Elemento 5: Estancia Canina -->
-            <div class="card-flip-container reveal-item" role="button" tabindex="0" aria-label="Ver información sobre Estancia Canina">
+            <div class="card-flip-container reveal-item" id="service-estancia" role="button" tabindex="0" aria-label="Ver información sobre Estancia Canina">
                 <div class="card-flip-inner">
                     <div class="card-front">
                         <img src="estancia.png" alt="Estancia Canina">
@@ -129,7 +147,7 @@
                 </div>
             </div>
 	     <!-- Elemento 6: Lista de Precios -->
-            <div class="card-flip-container reveal-item" role="button" tabindex="0" aria-label="Ver información sobre Estancia Canina">
+            <div class="card-flip-container reveal-item" id="service-precios" role="button" tabindex="0" aria-label="Ver información sobre precios de los servicios">
                 <div class="card-flip-inner">
                     <div class="card-front">
                         <img src="precios.png" alt="Estancia Canina">
@@ -212,6 +230,60 @@
             // 2. Control interactivo de las tarjetas (Móvil / Táctil)
             const flipCards = document.querySelectorAll('.card-flip-container');
             const hoverTimers = new WeakMap();
+            const mobileCardMenuToggle = document.querySelector('.mobile-card-menu-toggle');
+            const mobileCardMenu = document.getElementById('mobileCardMenu');
+
+            function closeMobileCardMenu() {
+                mobileCardMenu.hidden = true;
+                mobileCardMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileCardMenuToggle.setAttribute('aria-label', 'Abrir lista de tarjetas');
+            }
+
+            mobileCardMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileCardMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileCardMenu.hidden = isExpanded;
+                mobileCardMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+                mobileCardMenuToggle.setAttribute(
+                    'aria-label',
+                    isExpanded ? 'Abrir lista de tarjetas' : 'Cerrar lista de tarjetas'
+                );
+            });
+
+            mobileCardMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const card = document.querySelector(link.getAttribute('href'));
+                    closeMobileCardMenu();
+
+                    flipCards.forEach(c => c.classList.remove('flipped', 'active'));
+                    document.body.classList.remove('card-modal-open');
+
+                    const activateCard = () => {
+                        flipCards.forEach(c => c.classList.remove('flipped', 'active'));
+                        card.classList.add('flipped', 'active');
+                        document.body.classList.add('card-modal-open');
+                    };
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                    if (prefersReducedMotion) {
+                        card.scrollIntoView({ behavior: 'auto', block: 'center' });
+                        activateCard();
+                        return;
+                    }
+
+                    let fallbackTimer;
+                    const finishNavigation = () => {
+                        clearTimeout(fallbackTimer);
+                        window.removeEventListener('scrollend', finishNavigation);
+                        activateCard();
+                    };
+
+                    window.addEventListener('scrollend', finishNavigation, { once: true });
+                    fallbackTimer = setTimeout(finishNavigation, 1500);
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
 
             function clearHoverTimer(card) {
                 clearTimeout(hoverTimers.get(card));
@@ -239,6 +311,7 @@
                 card.addEventListener('click', (e) => {
                     e.stopPropagation(); // Evita que el click se propague
                     clearHoverTimer(card);
+                    closeMobileCardMenu();
                     
                     const isFlipped = card.classList.contains('flipped');
                     
@@ -273,9 +346,12 @@
             });
 
             // Si se hace click o tap fuera de cualquier tarjeta, las regresa a su posición original
-            document.addEventListener('click', () => {
+            document.addEventListener('click', (event) => {
                 flipCards.forEach(c => c.classList.remove('flipped', 'active'));
                 document.body.classList.remove('card-modal-open');
+                if (!event.target.closest('.mobile-card-navigation')) {
+                    closeMobileCardMenu();
+                }
             });
 
             document.addEventListener('keydown', (e) => {
@@ -283,6 +359,7 @@
 
                 flipCards.forEach(card => card.classList.remove('flipped', 'active'));
                 document.body.classList.remove('card-modal-open');
+                closeMobileCardMenu();
             });
 
             // 3. Generador de huellas aleatorias en el fondo
