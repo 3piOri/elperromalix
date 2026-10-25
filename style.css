@@ -725,6 +725,7 @@ body.card-modal-open .services-container {
         color: var(--color-text);
         font-size: 0.9rem;
         text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .mobile-card-menu a:hover {
