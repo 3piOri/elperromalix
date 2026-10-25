@@ -646,6 +646,13 @@ body.card-modal-open .services-container {
     }
 }
 
+@media (min-width: 601px) {
+    .card-flip-container.active .card-back h3 {
+        font-size: 1.5rem;
+        line-height: 2;
+    }
+}
+
 .card-flip-container.active .card-back--prices p {
     line-height: 1.5;
 }
