@@ -464,14 +464,14 @@ body {
 
     /* Tamaño global del contenedor táctil */
     .card-flip-container {
-        width: 180px;
-        height: 230px;
+        width: 220px;
+        height: 270px;
     }
 
     .card-front img,
     .card-back {
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
     }
 
     /* Ajuste de la cinta frontal */
