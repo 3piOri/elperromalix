@@ -603,6 +603,15 @@ body.card-modal-open .services-container {
     z-index: 999;
 }
 
+/* Oculta por completo el frente cuando la tarjeta gira o está activa */
+.card-flip-container.flipped .card-front,
+.card-flip-container.active .card-front {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: visibility 0s 0.4s, opacity 0.4s ease; /* Desdibuja el frente a la mitad del giro */
+}
+
 .card-flip-container.active .card-front,
 .card-flip-container.active .card-back {
     width: 100%;
