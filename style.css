@@ -1,6 +1,14 @@
 /* ==========================================================================
    Variables y Estilos Base
    ========================================================================== */
+@font-face {
+    font-family: 'Aero Matics Italic';
+    src: url('Aero Matics Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
 :root {
     --color-brown: #965d28;      /* Marrón principal */
     --color-olive: #6d7732;      /* Verde oliva */
@@ -9,7 +17,7 @@
     --color-bg: #f8faf6;         /* Fondo suave */
     --color-white: #ffffff;
     --color-text: #333333;
-    --font-main: 'Poppins', sans-serif;
+    --font-main: 'Aero Matics Italic', sans-serif;
 }
 
 @property --card-ring-angle {
@@ -69,9 +77,9 @@ body {
 }
 
 .tagline {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: var(--color-lime);
-    font-weight: 600;
+    font-weight: 500;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -108,8 +116,8 @@ body {
 }
 
 .instruction-text {
-    font-size: 0.9rem;
-    color: #ccc;
+    font-size: 1 rem;
+    color: #999797fd;
     margin-bottom: 40px;
 }
 
@@ -203,8 +211,8 @@ body {
     width: 90%;
     background: var(--color-brown);
     color: var(--color-white);
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 1 rem;
+    font-weight: 500;
     line-height: 1.2;
     padding: 8px 12px;
     margin-top: -15px; /* Superposición sutil con la foto */
@@ -262,10 +270,10 @@ body {
     display: inline-block;
     background-color: var(--color-brown);
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     padding: 4px 10px;
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .card-back .badge::before {
@@ -477,7 +485,7 @@ body {
     /* Ajuste de la cinta frontal */
     .card-front h3 {
         width: 95%;
-        font-size: 0.75rem;
+        font-size: 1 rem;
         padding: 5px 6px;
         margin-top: -10px;
     }
@@ -493,7 +501,7 @@ body {
 
     /* Título más compacto */
     .card-back h3 {
-        font-size: 0.65rem;
+        font-size: 0.8rem;
         margin-bottom: 3px;
         line-height: 1.1;
         max-width: 130px; /* Evita que el texto toque los bordes curvos superiores */
@@ -509,7 +517,7 @@ body {
 
     /* Etiqueta / Badge de duración */
     .card-back .badge {
-        font-size: 0.50rem;
+        font-size: 0.70rem;
         padding: 2px 6px;
         white-space: nowrap;
         max-width: 130px;
@@ -603,6 +611,15 @@ body.card-modal-open .services-container {
     z-index: 999;
 }
 
+/* Oculta por completo el frente cuando la tarjeta gira o está activa */
+.card-flip-container.flipped .card-front,
+.card-flip-container.active .card-front {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: visibility 0s 0.4s, opacity 0.4s ease; /* Desdibuja el frente a la mitad del giro */
+}
+
 .card-flip-container.active .card-front,
 .card-flip-container.active .card-back {
     width: 100%;
@@ -651,6 +668,7 @@ body.card-modal-open .services-container {
         font-size: 1.5rem;
         line-height: 2;
     }
+
 }
 
 .card-flip-container.active .card-back--prices p {
@@ -663,6 +681,12 @@ body.card-modal-open .services-container {
     padding: 6px 12px;
     white-space: normal;
     text-align: center;
+}
+
+@media (min-width: 601px) {
+    .card-flip-container.active .card-back .badge {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 600px) {
