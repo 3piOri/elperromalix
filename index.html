@@ -225,8 +225,58 @@
             // 2. Control interactivo de las tarjetas (Móvil / Táctil)
             const flipCards = document.querySelectorAll('.card-flip-container');
             const hoverTimers = new WeakMap();
+            const cardPlaceholders = new WeakMap();
+            const cardGridStyles = new WeakMap();
             const mobileCardMenuToggle = document.querySelector('.mobile-card-menu-toggle');
             const mobileCardMenu = document.getElementById('mobileCardMenu');
+
+            function closeFlipCards() {
+                flipCards.forEach(card => {
+                    card.classList.remove('flipped', 'active');
+                    const placeholder = cardPlaceholders.get(card);
+                    if (placeholder) placeholder.remove();
+                    cardPlaceholders.delete(card);
+                    const gridStyles = cardGridStyles.get(card);
+                    if (gridStyles) {
+                        gridStyles.forEach(([gridCard, gridColumn]) => {
+                            gridCard.style.gridColumn = gridColumn;
+                        });
+                    }
+                    cardGridStyles.delete(card);
+                });
+                document.body.classList.remove('card-modal-open');
+            }
+
+            function activateCard(card) {
+                closeFlipCards();
+
+                const placeholder = document.createElement('div');
+                const cardStyles = window.getComputedStyle(card);
+                const gridStyles = [...flipCards].map(gridCard => [
+                    gridCard,
+                    gridCard.style.gridColumn,
+                    window.getComputedStyle(gridCard).gridColumn
+                ]);
+                placeholder.className = 'card-flip-placeholder';
+                placeholder.setAttribute('aria-hidden', 'true');
+                placeholder.style.width = cardStyles.width;
+                placeholder.style.height = cardStyles.height;
+                placeholder.style.gridColumn = cardStyles.gridColumn;
+                placeholder.style.visibility = 'hidden';
+                placeholder.style.pointerEvents = 'none';
+                cardGridStyles.set(card, gridStyles.map(([gridCard, previousGridColumn]) => [
+                    gridCard,
+                    previousGridColumn
+                ]));
+                card.parentNode.insertBefore(placeholder, card);
+                gridStyles.forEach(([gridCard, , gridColumn]) => {
+                    gridCard.style.gridColumn = gridColumn;
+                });
+                cardPlaceholders.set(card, placeholder);
+
+                card.classList.add('flipped', 'active');
+                document.body.classList.add('card-modal-open');
+            }
 
             function closeMobileCardMenu() {
                 mobileCardMenu.hidden = true;
@@ -251,14 +301,6 @@
                     const card = document.querySelector(link.getAttribute('href'));
                     closeMobileCardMenu();
 
-                    flipCards.forEach(c => c.classList.remove('flipped', 'active'));
-                    document.body.classList.remove('card-modal-open');
-
-                    const activateCard = () => {
-                        flipCards.forEach(c => c.classList.remove('flipped', 'active'));
-                        card.classList.add('flipped', 'active');
-                        document.body.classList.add('card-modal-open');
-                    };
                     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
                     if (prefersReducedMotion) {
@@ -294,9 +336,7 @@
                         hoverTimers.delete(card);
                         if (card.classList.contains('active')) return;
 
-                        flipCards.forEach(c => c.classList.remove('flipped', 'active'));
-                        card.classList.add('flipped', 'active');
-                        document.body.classList.add('card-modal-open');
+                        activateCard(card);
                     }, 1000));
                 });
 
@@ -311,13 +351,11 @@
                     const isFlipped = card.classList.contains('flipped');
                     
                     // Cierra todas las demás tarjetas abiertas
-                    flipCards.forEach(c => c.classList.remove('flipped', 'active'));
-                    document.body.classList.remove('card-modal-open');
+                    closeFlipCards();
 
                     // Si la tarjeta no estaba volteada, la voltea
                     if (!isFlipped) {
-                        card.classList.add('flipped', 'active');
-                        document.body.classList.add('card-modal-open');
+                        activateCard(card);
                     }
                 });
 
@@ -335,15 +373,13 @@
                 document.documentElement.classList.add('touch-mode');
 
                 if (!e.target.closest('.card-flip-container')) {
-                    flipCards.forEach(card => card.classList.remove('flipped', 'active'));
-                    document.body.classList.remove('card-modal-open');
+                    closeFlipCards();
                 }
             });
 
             // Si se hace click o tap fuera de cualquier tarjeta, las regresa a su posición original
             document.addEventListener('click', (event) => {
-                flipCards.forEach(c => c.classList.remove('flipped', 'active'));
-                document.body.classList.remove('card-modal-open');
+                closeFlipCards();
                 if (!event.target.closest('.mobile-card-navigation')) {
                     closeMobileCardMenu();
                 }
@@ -352,8 +388,7 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key !== 'Escape') return;
 
-                flipCards.forEach(card => card.classList.remove('flipped', 'active'));
-                document.body.classList.remove('card-modal-open');
+                closeFlipCards();
                 closeMobileCardMenu();
             });
 
