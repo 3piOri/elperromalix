@@ -305,7 +305,7 @@
 
                     if (prefersReducedMotion) {
                         card.scrollIntoView({ behavior: 'auto', block: 'center' });
-                        activateCard();
+                        activateCard(card);
                         return;
                     }
 
@@ -313,7 +313,7 @@
                     const finishNavigation = () => {
                         clearTimeout(fallbackTimer);
                         window.removeEventListener('scrollend', finishNavigation);
-                        activateCard();
+                        activateCard(card);
                     };
 
                     window.addEventListener('scrollend', finishNavigation, { once: true });
