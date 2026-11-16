@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de precios Malix</title>
+    <link rel="preconnect" href="https://ajax.googleapis.com">
+    <link rel="modulepreload" href="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js" crossorigin>
+    <link rel="preload" href="3dsvg-mobile.glb" as="fetch" crossorigin fetchpriority="high" media="(max-width: 600px)">
+    <link rel="preload" href="3dsvg-v1.glb" as="fetch" crossorigin fetchpriority="high" media="(min-width: 601px)">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Precios El perro Malix" />
+    <meta property="og:description" content="Lista de precios." />
+    <meta property="og:image" content="https://3piori.github.io/precios-malix/logo.png" />
+    <meta property="og:image:secure_url" content="https://3piori.github.io/precios-malix/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1254" />
+    <meta property="og:image:height" content="1254" />
+    <meta property="og:url" content="https://3piori.github.io/precios-malix/" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Precios El perro Malix">
+    <meta name="twitter:description" content="Lista de precios.">
+    <meta name="twitter:image" content="https://3piori.github.io/precios-malix/logo.png">
+</head>
+<body>
+    <model-viewer
+        class="logo-background"
+        data-src-mobile="3dsvg-mobile.glb"
+        data-src-desktop="3dsvg-v1.glb"
+        alt=""
+        aria-hidden="true"
+        auto-rotate
+        auto-rotate-delay="0"
+        rotation-per-second="20deg"
+        interaction-prompt="none"
+        disable-zoom
+        loading="eager"
+        reveal="auto">
+    </model-viewer>
+    <script>
+        const logoModel = document.querySelector('.logo-background');
+        const isMobile = window.matchMedia('(max-width: 600px)').matches;
+        logoModel.setAttribute('src', isMobile ? logoModel.dataset.srcMobile : logoModel.dataset.srcDesktop);
+    </script>
+    <div class="shadow"></div>
+    <h1>El perro <span class="destacado">MALIX</span></h1>
+    <i>Cotiza tus servicios</i>
+    <section class="precios">
+        <h2>LISTA DE PRECIOS</h2>
+        <p>(Precios sujetos a cambios sin previo aviso)</p>
+        <ul id="preciosUl"></ul>
+    </section>
+    <a href="https://wa.me/529993665693?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20sus%20servicios."
+	class="whatsapp-btn"
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label="Contacto por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<section class="desc">
+    <p>"Más servicios, menos precio: ¡contrata un paquete!"</p>
+</section>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <script src="script.js"></script>
+    <footer class="site-footer">
+<div class="social-links">
+    <a href="https://facebook.com/elperromalix" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook de El perro Malix">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/elperromalix" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram de El perro Malix">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://maps.app.goo.gl/XzPG1cyACXnTHkEh8" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Buscar El perro Malix en Google Maps">
+        <i class="fas fa-map-location-dot"></i>
+    </a>
+</div>
+<p>&copy; <span id="year"></span> EL PERRO MALIX. Todos los derechos reservados. Mérida, Yucatán, México.</p>
+    </footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

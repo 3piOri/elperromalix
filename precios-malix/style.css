@@ -1,0 +1,326 @@
+@font-face {
+    font-family: "Aero Matics Italic";
+    src: url("Aero Matics Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Aero Matics Italic', sans-serif;
+    font-size: 24px;
+}
+
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    color: #6d7732;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    text-transform: none;
+    margin-inline: 1rem;
+    transition: all 0.25s ease-in-out;
+    cursor: default;
+}
+
+li:hover {
+    background: linear-gradient(50deg, #c0c92f, #6d7732);
+    backdrop-filter: brightness(2.5);
+    box-shadow: 0px 0px 10px #000000;
+}
+.logo-background {
+    position: fixed;
+    z-index: -9;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100lvh;
+    max-width: none;
+    background-color: rgba(0, 0, 0, 0.925);
+    pointer-events: none;
+}
+
+h1 {
+    width: fit-content;
+    margin-inline: auto;
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: none;
+    color: #000000;
+    
+    /* Borde blanco y orden de renderizado */
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.65);
+    paint-order: stroke fill;
+    
+    /* Sombra para que resalte del fondo */
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+}
+
+h1 .destacado {
+    color: #965d2899;
+    -webkit-text-fill-color: #965d2899;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.65);
+    paint-order: stroke fill;
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+}
+
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    text-decoration: none;
+    align-self: center;
+    margin: 1rem 0;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-btn i {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+}
+
+button:hover {
+    background: linear-gradient(50deg, #c0c92f, #dce09d);;
+    backdrop-filter: brightness(2.5);
+    box-shadow: 0px 0px 10px #000000;
+}
+
+body > i {
+    background: linear-gradient(50deg, rgb(192, 201, 47), rgba(126, 240, 111, 0.635));
+    margin: 30px;
+    border-radius: 10px;
+    padding: 5px;
+    color: black;
+    display: block;
+    width: 100%;
+    transition: all 0.25s ease-in-out;
+}
+@media (min-width: 768px) {
+    body > i {
+        max-width: 1000px;  /* Ancho máximo que tendrá en PC */
+        margin-left: auto;
+        margin-right: auto; /* Lo centra en la pantalla */
+    }
+
+    .precios {
+        max-width: 1000px;  /* Ancho máximo que tendrá en PC */
+        margin-left: auto;
+        margin-right: auto; /* Lo centra en la pantalla */
+    }
+}
+
+body > i:hover {
+    background: linear-gradient(50deg, #c0c92f, #bfc92fad);
+    backdrop-filter: brightness(3.5);
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.precios {
+    padding: 5px;
+    margin: 5px auto;
+    border-radius: 15px;
+    display: block;
+    width: 85%;
+    line-height: 2.6;
+}
+
+.precios h2,
+.precios p {
+    line-height: 1;
+}
+
+.precios h2 {
+    margin-bottom: 0;
+}
+
+.precios p {
+    margin-top: 0;
+}
+
+.precios li {
+    color: #c0c92f;
+}
+
+.precios ul {
+    margin-top: 2rem;
+}
+
+.precios li:hover {
+    color: white;
+}
+
+.desc p {
+    color:#c0c92f;
+}
+
+.shadow {
+    width: 100%;
+    height:70px;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(180deg, black, transparent);
+    z-index: -1;
+}
+
+footer {
+    color: #fcf8f8;
+}
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #ffffff;
+  /* Un degradado que va de negro sólido en la base a transparente hacia arriba */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  backdrop-filter: none;
+  margin-top: auto;
+}
+
+/* Ya puedes borrar por completo el bloque .site-footer::before anterior */
+
+.site-footer p {
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 0 0.5rem;
+}
+
+.social-links a {
+    color: #ffffff;
+    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(243, 234, 234, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: rgba(243, 234, 234, 0.35);
+    transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+    html {
+        width: 100%;
+        min-height: 100%;
+        font-size: clamp(16px, 4.5vw, 20px);
+        background-color: #fafafa;
+    }
+
+    body {
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        justify-content: flex-start;
+        gap: 0.75rem;
+        padding: 1rem 0 0;
+    }
+
+    .logo-background {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        max-width: none;
+        height: 100vh;
+        height: 100lvh;
+    }
+
+    .shadow {
+        left: 0;
+        width: 100vw;
+    }
+
+    body > i {
+        width: 100%;
+        margin: 0;
+    }
+
+    h1 {
+        width: 100%;
+        padding-inline: 0.25rem;
+        font-size: clamp(2rem, 9vw, 2.7rem);
+        line-height: 1.05;
+    }
+
+    .precios {
+        width: 100%;
+        margin: 0;
+        padding: 1rem 0.75rem;
+    }
+
+    .precios h2 {
+        font-size: 1.5rem;
+    }
+
+    li {
+        gap: 0.75rem;
+        margin-inline: 0;
+        text-align: left;
+    }
+
+    li span {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .whatsapp-btn {
+        margin: 0.25rem 0;
+    }
+
+    .site-footer {
+        padding: 1rem;
+        font-size: 0.65rem;
+    }
+
+    .social-links a {
+        width: 44px;
+        height: 44px;
+    }
+}
