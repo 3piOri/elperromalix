@@ -46,7 +46,7 @@
                 <li><a href="#service-asesoria">Asesoría de Comportamiento</a></li>
                 <li><a href="#service-entrenamiento">Entrenamiento Canino</a></li>
                 <li><a href="#service-estancia">Estancia Canina</a></li>
-                <li><a href="#service-precios">Cotiza tu servicio</a></li>
+                <li><a href="precios-malix/" target="_blank" rel="noopener noreferrer" data-card-target="#service-precios">Cotiza tu servicio</a></li>
             </ul>
         </nav>
     </div>
@@ -296,9 +296,11 @@
 
             mobileCardMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', event => {
-                    event.preventDefault();
+                    if (!link.hasAttribute('target')) {
+                        event.preventDefault();
+                    }
                     event.stopPropagation();
-                    const card = document.querySelector(link.getAttribute('href'));
+                    const card = document.querySelector(link.dataset.cardTarget || link.getAttribute('href'));
                     closeMobileCardMenu();
 
                     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
