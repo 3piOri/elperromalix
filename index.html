@@ -301,6 +301,7 @@
                     }
                     event.stopPropagation();
                     const card = document.querySelector(link.dataset.cardTarget || link.getAttribute('href'));
+
                     closeMobileCardMenu();
 
                     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
